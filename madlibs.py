@@ -59,20 +59,13 @@ def show_madlib_form():
 def show_madlib():
     """responses for filling the madlib"""
 
-    # color=madlib_color,
-    # noun=madlib_noun,
-    # adjective=madlib_adjective
-
-    madlib_person = request.args.get("person")
-    madlib_color = request.args.get("color")
-    madlib_noun = request.args.get("noun")
-    madlib_adjective = request.args.get("adjective")
-
     dict_madlib = {}
+    dict_madlib["person"] = request.args.get("person")
+    dict_madlib["color"] = request.args.get("color")
+    dict_madlib["noun"] = request.args.get("noun")
+    dict_madlib["adjective"] = request.args.get("adjective")
 
-    dict_madlib[name] = madlib_person
-
-    return render_template("madlib.html", name=dict_madlib.value)
+    return render_template("madlib.html", madlib_words=dict_madlib)
 
 
 if __name__ == '__main__':

@@ -60,12 +60,20 @@ def show_madlib():
     """responses for filling the madlib"""
 
     dict_madlib = {}
-    dict_madlib["person"] = request.args.get("person")
+    # .getlist() returns a list from a checkbox
+    # then we store in the dictionary
+    dict_madlib["person"] = request.args.getlist("person")
     dict_madlib["color"] = request.args.get("color")
     dict_madlib["noun"] = request.args.get("noun")
     dict_madlib["adjective"] = request.args.get("adjective")
 
-    return render_template("madlib.html", madlib_words=dict_madlib)
+
+    #call random.choice on dict key and store in new variable
+    random_person = choice(dict_madlib["person"])
+
+
+    #pass new variable to jinja template
+    return render_template("madlib.html", madlib_words=dict_madlib, random_person=random_person)
 
 
 if __name__ == '__main__':
